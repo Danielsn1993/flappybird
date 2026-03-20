@@ -1,0 +1,41 @@
+// 💰 APENAS 990 PONTOS INICIAIS
+(function() {
+  console.log("═══════════════════════════════════════");
+  console.log("💰 DEFININDO 990 PONTOS");
+  console.log("═══════════════════════════════════════\n");
+  
+  const vm = window.Scratch.vm;
+  const stage = vm.runtime.getTargetForStage();
+  
+  let pontosVar = null;
+  
+  for (let varId in stage.variables) {
+    const v = stage.variables[varId];
+    if (v.name === "PONTOS FLAPPYBIRD") {
+      pontosVar = v;
+      break;
+    }
+  }
+  
+  if (pontosVar) {
+    pontosVar.value = 990;
+    console.log("✅ Pontos definidos: 990");
+    
+    // Manter sempre em pelo menos 990
+    window.PONTOS_MINIMOS = setInterval(() => {
+      if (pontosVar.value < 990) {
+        pontosVar.value = 990;
+      }
+    }, 100);
+    
+    console.log("✅ Pontos travados em mínimo 990!");
+    console.log("\n🎮 Comece a jogar!");
+    console.log("\n💡 Para desativar:");
+    console.log("   clearInterval(window.PONTOS_MINIMOS)");
+  } else {
+    console.log("❌ Variável PONTOS FLAPPYBIRD não encontrada");
+  }
+  
+  console.log("═══════════════════════════════════════");
+  
+})();
